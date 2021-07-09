@@ -66,3 +66,8 @@ SELECT P.P_id, COUNT(T.T_id) FROM Passenger P, Ticket T WHERE P.P_id = T.P_id GR
 SELECT DISTINCT P.P_id FROM Passenger P;
 SELECT P.P_id, COUNT(T.T_id) FROM Passenger P, Ticket T WHERE P.P_id = T.P_id GROUP BY P.P_id HAVING COUNT(T.T_id) > 1;
 SELECT COUNT(*) FROM Cancellation C;
+SELECT P.P_id FROM Passenger P  WHERE P.P_id <>ALL(SELECT T.P_id FROM Ticket T);                       -- <> not equal
+
+SELECT P.P_id FROM Passenger P  WHERE P.P_id = ANY(SELECT T.P_id FROM Ticket T);
+
+SELECT P.P_id FROM Passenger P  WHERE P.P_id  IN (SELECT T.P_id FROM Ticket T);
