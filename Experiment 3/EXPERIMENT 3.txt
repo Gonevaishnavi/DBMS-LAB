@@ -1,0 +1,84 @@
+EXPERIMENT 3:
+
+Normalization: The process of decomposing relations that contain anomalies (insertion,Updation,Deletion anomalies) to produce smaller well structured relations, to reduce data redundancy.
+
+Normal Form: A state of a relation that results from applying simple rules regarding functional dependencies to that relation.
+
+Functional Dependencies: A functional dependency is a constraint between two attributes or two sets of attributes. A functional dependency of B on A represented by an arrow A->B
+
+Eg: Bus no->Bname, Type
+
+The types of normal forms:
+
+1st Normal Form: A relation in the 1st normal form if it contains no multi valued attributes.
+
+2nd Normal Form : A relation is in 2nd normal form if it is in 1st normal form and every non-key attribute is fully functionally dependent on the primary key.
+Partial Dependency is functional dependencies in which one or more non-key attributes are functionally depends on part of the primary key.
+
+3rd Normal Form : A relation is in 3rd normal form if it is in 2nd normal form and no transitive dependency exists.
+Transitive dependency in a relation is a functional dependency between two (or more) non-key attributes.
+
+Boyce Codd Normal Form: A relation in a Boyce Codd normal form iff every determinant in the relation is a candidate key.it is strict version of 3NF,so also called 3.5NF
+
+4th Normal Form : When a relation is in BCNF there are no longer any anomalies that result from functional dependency.it comes from concept of Multivalued dependency.
+
+Eg: 1st Normal Form:
+
+PNR no Pname Age Gender 		Addr 					 Phno
+457    Satish 		28 M 		Plot No. 5 RK. Puram, Hyd   		9008745625,9959678987
+746    Sheela		 25 F 		H.No:1-9-88,DilsukhNagar,Hyderabad 9000998683
+
+Multivalued attributes are normalized into single value attributes.
+
+PNR no Pname Age Gender Addr 					Phno
+457 	Satish 	27 M 	Plot No. 5 RK. Puram, Hyderabad	 9008745625
+457 	Satish	 27 M	Plot No. 5 RK. Puram, Hyderabad 	    9959678987
+746	Sheela	25 F 	H.No:1-9-88,DilsukhNagar,Hyderabad 	9000998683
+
+
+
+
+Eg: 2nd Normal Form:
+
+PNR no Pname Age Gender Addr 				Phno
+457 	Satish 	27 	MPlot No. 5 RK. Puram, Hyderabad	 9008745625
+457	 Satish 27	 M	 Plot No. 5 RK. Puram, Hyderabad 	 9008745625
+746 	Sheela 25 	F	 H.No:1-9-88,DilsukhNagar,Hyderabad 9000998683
+
+PNR no is the only primary key .so the partial dependency is as follows:
+PNR no -> Pname, Age, Gender
+PNR no -> Addr, Phno
+
+PNR no Pname Age Gender
+457 	Satish 	27M
+746 	Sheela	 25 F
+
+PNR no	 Addr					 Phno
+457 	Plot No. 5 RK. Puram, Hyderabad 	     9008745625
+746 	H.No:1-9-88,DilsukhNagar,Hyderabad    9000998683
+	
+Eg: 3rd Normal Form:
+Tno Journey Date Day Seatno Src   Dest  Deptime  Gender  Bus no
+2100   15/08/10      Sun   35       Hyd  Delhi 10hrs         M        AP1000
+2710   20/08/10       Mon28      B’lore Hyd  15hrs         F        AP2014
+1020   22/08/10       Wed 38      Delhi  B’lore 18hrs        F         AP2387
+6100 10/08/10        Tue 20     Hyd   Chennai 14hrs     M      AP09525
+1478 25/08/10        Wed 15   Chennai Delhi 06hrs       F       AP29457
+
+Tno -> Journey Date
+Journey Date -> Day
+The Table is normalized as follows:
+Tno 	Seatno Src Dest Deptime Gender Bus no
+2100 	35	 Hyd Delhi 10:00	M 	AP1000
+2710 	28 	B’lore Hyd 15:00 	F 	AP2014
+1020 	38 	Delhi B’lore 18:00 	F	AP2387
+6100 	20 	Hyd Chennai 14:00 M 	AP09525
+1478 	15 	Chennai Delhi 06:00 F	AP29457
+Journey Date Day
+15/08/10 	Sun
+20/08/10 	Mon
+22/08/10	Wed
+10/08/10 	Tue
+25/08/10	Wed
+
+
